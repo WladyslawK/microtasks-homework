@@ -3,6 +3,8 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {clickOptions} from "@testing-library/user-event/dist/click";
 import {Button} from "./components/Button";
+import {Microtask1} from "./Microtascs/Microtask1";
+
 
 function App() {
 
@@ -38,7 +40,7 @@ function App() {
         setA(a)
     }
 
-    function onClickHandlerNull(){
+    function onClickHandlerNull() {
         console.log(null)
         setA(0)
     }
@@ -62,18 +64,26 @@ function App() {
     let [town, setTown] = useState(arr[0])
 
     const oncklickChangeTown = (id: number) => {
-        const sorted = arr.sort((a, b)=>a.id - b.id)
+        const sorted = arr.sort((a, b) => a.id - b.id)
         console.log(sorted)
-        if(id + 1 < arr.length){
+        if (id + 1 < arr.length) {
             setTown(arr[++id])
-        }else setTown(arr[0])
+        } else setTown(arr[0])
     }
+
+    const LogSubscriber = (name: string, age: number) => {
+        alert(`${name} ${age}`)
+    }
+
+
+
 
     return (
         <div className="App">
-
-            {/*ARR METHOD MAP */}
             <h1>Microtasks</h1>
+            <Microtask1/>
+            {/*ARR METHOD MAP */}
+
             <ul>
                 {/*{
                     topCars.map(car => <li>Brand: <b>{car.manufacturer}</b> Model: <b>{car.model}</b></li>)
