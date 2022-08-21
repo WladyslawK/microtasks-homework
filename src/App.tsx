@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 
 import './App.css';
 import {clickOptions} from "@testing-library/user-event/dist/click";
@@ -14,12 +14,9 @@ function App() {
 
     const liElems = topCars.map(car => <li>Brand: <b>{car.manufacturer}</b> Model <b>{car.model}</b></li>)
 
-    const onChangeInput = (e:ChangeEvent<HTMLTextAreaElement>) =>{
-        alert(e.target.value)
+    //button functions
 
-    }
-
-    function consoleButton (message: string){
+    function consoleButton(message: string) {
         console.log(message)
     }
 
@@ -31,10 +28,51 @@ function App() {
         console.log(title)
     }
 
+    // use State funcs
 
+    let [a, setA] = useState(1)
+
+    const onClickHandlerChangeState = (aVal: number) => {
+        console.log(aVal)
+        a++;
+        setA(a)
+    }
+
+    function onClickHandlerNull(){
+        console.log(null)
+        setA(0)
+    }
+
+    //change town UseState practice
+    type ArrElementType = {
+        id: number,
+        name: string
+    }
+
+    const arr: Array<ArrElementType> = [
+        {id: 1, name: "Warsaw"},
+        {id: 4, name: "Tokyo"},
+        {id: 0, name: "Rio De Janejro"},
+        {id: 2, name: "Kiev"},
+        {id: 6, name: "Rome"},
+        {id: 3, name: "Bologna"},
+        {id: 5, name: "Santorini"}
+    ]
+
+    let [town, setTown] = useState(arr[0])
+
+    const oncklickChangeTown = (id: number) => {
+        const sorted = arr.sort((a, b)=>a.id - b.id)
+        console.log(sorted)
+        if(id + 1 < arr.length){
+            setTown(arr[++id])
+        }else setTown(arr[0])
+    }
 
     return (
         <div className="App">
+
+            {/*ARR METHOD MAP */}
             <h1>Microtasks</h1>
             <ul>
                 {/*{
@@ -43,12 +81,19 @@ function App() {
                 {
                     liElems
                 }
-
             </ul>
-            <textarea></textarea><br/>
-            <Button name = {"YouTubeChanel 1"} callBack={() => onClickHandler("Ivan", 21)}/>
-            <Button name = {"YouTubeChanel 2"} callBack={() => onClickHandler("Vasya", 25)}/>
-            <Button name={"Stupid Button"} callBack={()=>consoleButton("I am stupid Button")}/>
+
+            {/*BUTTON TR*/}
+            <br/>
+            <Button name={"YouTubeChanel 1"} callBack={() => onClickHandler("Ivan", 21)}/>
+            <Button name={"YouTubeChanel 2"} callBack={() => onClickHandler("Vasya", 25)}/>
+            <Button name={"Stupid Button"} callBack={() => consoleButton("I am stupid Button")}/>
+
+
+            {/*HOOK USESTATE*/}
+            <h1 onClick={() => onClickHandlerChangeState(a)}>{a}</h1>
+            <button onClick={onClickHandlerNull}>0</button>
+            <h2 key={town.id} onClick={() => oncklickChangeTown(town.id)}>{`Hello ${town.name}`}</h2>
         </div>
     );
 }
