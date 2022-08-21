@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from "./Microtask1/Button";
 import {CarType, MapComponent} from "./Microtask1/MapComponent";
 import {TownsType, UseStateComponent} from "./Microtask1/UseStateComponent";
+import {FilterComponent} from "./Microtask1/FilterComponent";
 
 const LogSubscriber = (name: string, age: number) => {
     alert(`${name} ${age}`)
@@ -43,6 +44,9 @@ export const Microtask1: React.FC<Microtask1Type> = ({topCars, towns}) => {
             <UseStateComponent towns={towns}/>
             <br/>
             -----------------------------------
+
+            <h3>4.Filter</h3>
+            <FilterComponent/>
         </>
     );
 };

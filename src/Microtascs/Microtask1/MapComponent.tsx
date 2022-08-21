@@ -11,7 +11,7 @@ export type MapComponentType ={
 
 export const MapComponent: React.FC<MapComponentType> = ({topCars}) => {
 
-    const liElems = topCars.map(c => <li>{`${c.manufacturer} ${c.model}`}</li>)
+    const liElems = topCars.map((c, i) => <li key={i}>{`${c.manufacturer} ${c.model}`}</li>)
 
     return (
         <ul>
