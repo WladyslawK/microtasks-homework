@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {Microtask1} from "./Microtascs/Microtask1";
+import {MessageType, MicroTask2} from "./Microtascs/Microtasks2/MicroTask2";
+import {FullInput} from "./Microtascs/Microtasks2/FullInput";
 
 const topCars = [
     {manufacturer: 'BMW', model: 'm5cs'},
@@ -22,11 +24,30 @@ const arr: Array<ArrElementType> = [
     {id: 5, name: "Santorini"}
 ]
 
+
 function App() {
+
+    //MicroTask2 state
+    let [messages, setMessages] = useState([
+        {message: 'message1'},
+        {message: 'message2'},
+        {message: 'message3'},
+    ])
+
+    const addNewMessageCallback = (newMessage: string) => {
+        const newMessages = [{message: newMessage}, ...messages]
+        setMessages(newMessages)
+    }
+
     return (
         <div className="App">
             <h1>Microtasks</h1>
-            <Microtask1 topCars={topCars} towns={arr}/>
+            {/*<Microtask1 topCars={topCars} towns={arr}/>*/}
+
+
+            <MicroTask2 messages={messages} addMessageCallback={addNewMessageCallback}/>
+
+            {/*<FullInput messages={messages} addMessageCallback={ addNewMessageCallback}/>*/}
         </div>
     );
 }
